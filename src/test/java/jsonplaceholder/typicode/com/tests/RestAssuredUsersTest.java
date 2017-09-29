@@ -1,8 +1,8 @@
-package webservices;
+package jsonplaceholder.typicode.com.tests;
 
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
-import model.User;
+import jsonplaceholder.typicode.com.model.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;

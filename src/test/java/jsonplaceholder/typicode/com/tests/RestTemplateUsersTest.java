@@ -1,6 +1,6 @@
-package webservices;
+package jsonplaceholder.typicode.com.tests;
 
-import model.User;
+import jsonplaceholder.typicode.com.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.testng.Assert;

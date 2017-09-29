@@ -1,4 +1,4 @@
-package model;
+package jsonplaceholder.typicode.com.model;
 
 
 import java.util.HashMap;

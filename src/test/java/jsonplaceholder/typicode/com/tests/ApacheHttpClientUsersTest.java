@@ -1,7 +1,7 @@
-package webservices;
+package jsonplaceholder.typicode.com.tests;
 
 import com.google.gson.Gson;
-import model.User;
+import jsonplaceholder.typicode.com.model.User;
 import org.apache.http.Header;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
