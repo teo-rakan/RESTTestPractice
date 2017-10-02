@@ -33,7 +33,7 @@ public class CRUDGistTest extends BaseTest {
         newGistId = response.as(Gist.class).getId();
     }
 
-    @Test(dependsOnMethods = "createGist")
+    @Test(dependsOnMethods = "createGistTest")
     public void updateGistTest() {
         Gist gist = getDefaultGist();
         String oldDescription = gist.getDescription();
@@ -51,7 +51,7 @@ public class CRUDGistTest extends BaseTest {
         Assert.assertEquals(actualDescription, newDescription);
     }
 
-    @Test(dependsOnMethods = "updateGist")
+    @Test(dependsOnMethods = "updateGistTest")
     public void removeGistTest() {
         Response response = given().auth().oauth2(token).delete("/gists/" + newGistId).andReturn();
 
