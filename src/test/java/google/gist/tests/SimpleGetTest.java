@@ -31,6 +31,6 @@ public class SimpleGetTest extends BaseTest {
         Response response = given().auth().oauth2(token).get("/gists/" + gistId).andReturn();
         Gist gist = response.as(Gist.class);
 
-        Assert.assertTrue(gist.getId().equals(gistId));
+        Assert.assertTrue(gist.getFiles().containsKey("RestAssuredExample.java"));
     }
 }

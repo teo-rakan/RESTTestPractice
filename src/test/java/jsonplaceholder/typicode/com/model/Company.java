@@ -9,7 +9,6 @@ public class Company {
     private String name;
     private String catchPhrase;
     private String bs;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public String getName() {
         return name;
@@ -35,11 +34,4 @@ public class Company {
         this.bs = bs;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return additionalProperties;
-    }
-
-    public void setAdditionalProperties(Map<String, Object> additionalProperties) {
-        this.additionalProperties = additionalProperties;
-    }
 }

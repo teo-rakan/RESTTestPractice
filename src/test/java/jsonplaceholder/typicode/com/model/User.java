@@ -13,7 +13,6 @@ public class User {
     private String phone;
     private String website;
     private Company company;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public int getId() {
         return id;
@@ -77,13 +76,5 @@ public class User {
 
     public void setCompany(Company company) {
         this.company = company;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return additionalProperties;
-    }
-
-    public void setAdditionalProperties(Map<String, Object> additionalProperties) {
-        this.additionalProperties = additionalProperties;
     }
 }
