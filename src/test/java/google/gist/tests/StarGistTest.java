@@ -5,11 +5,6 @@ import google.gist.model.Gist;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.util.Date;
-
 import static google.gist.utils.DateUtil.getToday;
 
 public class StarGistTest extends BaseTest {

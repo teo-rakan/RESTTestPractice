@@ -1,9 +1,5 @@
 package jsonplaceholder.typicode.com.model;
 
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class Company {
 
     private String name;

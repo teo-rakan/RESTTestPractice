@@ -165,7 +165,7 @@ public class Gist {
     }
 
     public void setFile(String name, GistFile file) {
-        Map<String, GistFile> files = new HashMap<String, GistFile>();
+        Map<String, GistFile> files = new HashMap<>();
         files.put(name, file);
         setFiles(files);
     }

@@ -10,14 +10,14 @@ import static com.jayway.restassured.RestAssured.given;
 
 public class BaseTest {
 
-    protected final String token = PropertyManager.get("git.token");
+    private final String token = PropertyManager.get("git.token");
 
     @BeforeTest
     public void initTest() {
         RestAssured.baseURI = "https://api.github.com";
     }
 
-    protected RequestSpecification getGivenAuth() {
+    RequestSpecification getGivenAuth() {
         return given().auth().oauth2(token);
     }
 }
