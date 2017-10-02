@@ -18,7 +18,7 @@ public class SimpleGetTest extends BaseTest {
     }
 
     @Test
-    public void checkGistsExist() {
+    public void checkGistsExistTest() {
         Response response = given().auth().oauth2(token).get("/gists").andReturn();
         Gist[] gists = response.as(Gist[].class);
 
@@ -26,7 +26,7 @@ public class SimpleGetTest extends BaseTest {
     }
 
     @Test
-    public void checkSingleGist() {
+    public void checkSingleGistTest() {
         String gistId = "989aaca6beb2d3796f07ea4040598c04";
         Response response = given().auth().oauth2(token).get("/gists/" + gistId).andReturn();
         Gist gist = response.as(Gist.class);

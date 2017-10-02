@@ -22,7 +22,7 @@ public class CRUDGistTest extends BaseTest {
     }
 
     @Test
-    public void createNewGist() {
+    public void createGistTest() {
         Gist gist = getDefaultGist();
         String json = new Gson().toJson(gist, Gist.class);
         Response response  = given().auth().oauth2(token).body(json).with().contentType("application/json").post("/gists").andReturn();
@@ -33,8 +33,8 @@ public class CRUDGistTest extends BaseTest {
         newGistId = response.as(Gist.class).getId();
     }
 
-    @Test(dependsOnMethods = "createNewGist")
-    public void updateNewGist() {
+    @Test(dependsOnMethods = "createGist")
+    public void updateGistTest() {
         Gist gist = getDefaultGist();
         String oldDescription = gist.getDescription();
         String newDescription = "Updated description";
@@ -51,8 +51,8 @@ public class CRUDGistTest extends BaseTest {
         Assert.assertEquals(actualDescription, newDescription);
     }
 
-    @Test(dependsOnMethods = "updateNewGist")
-    public void removeGist() {
+    @Test(dependsOnMethods = "updateGist")
+    public void removeGistTest() {
         Response response = given().auth().oauth2(token).delete("/gists/" + newGistId).andReturn();
 
         Assert.assertEquals(response.statusCode(), 204);
