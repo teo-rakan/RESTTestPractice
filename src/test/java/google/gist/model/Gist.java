@@ -3,6 +3,7 @@ package google.gist.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Gist {
@@ -161,5 +162,11 @@ public class Gist {
 
     public void setFiles(Map<String, GistFile> files) {
         this.files = files;
+    }
+
+    public void setFile(String name, GistFile file) {
+        Map<String, GistFile> files = new HashMap<String, GistFile>();
+        files.put(name, file);
+        setFiles(files);
     }
 }

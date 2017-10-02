@@ -7,6 +7,14 @@ public class GistFile {
     private String type;
     private boolean truncated;
     private String language;
+    private String content;
+
+    public GistFile() {
+    }
+
+    public GistFile(String content) {
+        this.content = content;
+    }
 
     public int getSize() {
         return size;
@@ -46,5 +54,13 @@ public class GistFile {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

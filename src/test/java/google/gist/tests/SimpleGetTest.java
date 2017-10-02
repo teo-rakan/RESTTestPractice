@@ -1,10 +1,8 @@
 package google.gist.tests;
 
-import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import google.gist.model.Gist;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static com.jayway.restassured.RestAssured.given;
@@ -13,7 +11,7 @@ public class SimpleGetTest extends BaseTest {
 
     @Test
     public void checkGetGistsStatusCodeTest() {
-        Response response = given().get("/users/" + user + "/gists").andReturn();
+        Response response = given().auth().oauth2(token).get("/gists").andReturn();
         int actualStatusCode = response.statusCode();
 
         Assert.assertEquals(actualStatusCode, 200);
@@ -21,7 +19,7 @@ public class SimpleGetTest extends BaseTest {
 
     @Test
     public void checkGistsExist() {
-        Response response = given().get("/users/" + user + "/gists").andReturn();
+        Response response = given().auth().oauth2(token).get("/gists").andReturn();
         Gist[] gists = response.as(Gist[].class);
 
         Assert.assertTrue(gists.length > 0);
@@ -30,7 +28,7 @@ public class SimpleGetTest extends BaseTest {
     @Test
     public void checkSingleGist() {
         String gistId = "989aaca6beb2d3796f07ea4040598c04";
-        Response response = given().get("/gists/" + gistId).andReturn();
+        Response response = given().auth().oauth2(token).get("/gists/" + gistId).andReturn();
         Gist gist = response.as(Gist.class);
 
         Assert.assertTrue(gist.getId().equals(gistId));
