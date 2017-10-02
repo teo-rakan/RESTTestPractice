@@ -5,11 +5,9 @@ import google.gist.model.Gist;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static com.jayway.restassured.RestAssured.given;
-
 public class SimpleGetTest extends BaseTest {
 
-    @Test
+    @Test(description = "Checks status code for getting a user's gists")
     public void checkGetGistsStatusCodeTest() {
         Response response = getGivenAuth().get("/gists").andReturn();
         int actualStatusCode = response.statusCode();
@@ -17,20 +15,11 @@ public class SimpleGetTest extends BaseTest {
         Assert.assertEquals(actualStatusCode, 200);
     }
 
-    @Test
+    @Test(description = "Get list a user's gists")
     public void checkGistsExistTest() {
         Response response = getGivenAuth().get("/gists").andReturn();
         Gist[] gists = response.as(Gist[].class);
 
         Assert.assertTrue(gists.length > 0);
-    }
-
-    @Test
-    public void checkSingleGistTest() {
-        String gistId = "989aaca6beb2d3796f07ea4040598c04";
-        Response response = getGivenAuth().get("/gists/" + gistId).andReturn();
-        Gist gist = response.as(Gist.class);
-
-        Assert.assertTrue(gist.getFiles().containsKey("RestAssuredExample.java"));
     }
 }
