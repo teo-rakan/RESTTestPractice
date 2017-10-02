@@ -10,7 +10,7 @@ import static google.gist.utils.DateUtil.getToday;
 public class StarGistTest extends BaseTest {
 
     private final String gistId = "989aaca6beb2d3796f07ea4040598c04";
-    private final String url = "/gists/" + gistId + "/star";
+    private final String url = "/" + gistId + "/star";
 
     @Test(description = "Star a gist")
     public void starGistTest() {
@@ -26,7 +26,7 @@ public class StarGistTest extends BaseTest {
 
     @Test(dependsOnMethods = "checkGistStaredTest", description = "List starred gists")
     public void listStarredGistsTest() {
-        Response response  = getGivenAuth().param("since", getToday()).get("/gists/starred").andReturn();
+        Response response  = getGivenAuth().param("since", getToday()).get("/starred").andReturn();
         Gist[] gists = response.as(Gist[].class);
         Assert.assertEquals(response.statusCode(), 200);
         Assert.assertTrue(gists.length > 0);

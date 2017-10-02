@@ -14,7 +14,7 @@ public class CRUDGistTest extends BaseTest {
 
     @Test(description = "Create a gist")
     public void createGistTest() {
-        Response response  = getGivenAuth().body(getGist()).with().contentType("application/json").post("/gists").andReturn();
+        Response response  = getGivenAuth().body(getGist()).with().contentType("application/json").post().andReturn();
         Assert.assertEquals(response.statusCode(), 201);
 
         //save to update and remove this gist later
@@ -23,7 +23,7 @@ public class CRUDGistTest extends BaseTest {
 
     @Test(dependsOnMethods = "createGistTest", description = "Get a single gist")
     public void checkGistTest() {
-        Response response = getGivenAuth().get("/gists/" + gistId).andReturn();
+        Response response = getGivenAuth().get("/" + gistId).andReturn();
         Gist gist = response.as(Gist.class);
         Assert.assertTrue(gist.getFiles().containsKey(fileName));
     }
@@ -37,7 +37,7 @@ public class CRUDGistTest extends BaseTest {
         Response response;
 
         gist.setDescription(newDescription);
-        response = getGivenAuth().body(gist).with().contentType("application/json").patch("/gists/" + gistId).andReturn();
+        response = getGivenAuth().body(gist).with().contentType("application/json").patch("/" + gistId).andReturn();
         actualDescription = response.as(Gist.class).getDescription();
 
         Assert.assertEquals(response.statusCode(), 200);
@@ -47,7 +47,7 @@ public class CRUDGistTest extends BaseTest {
 
     @Test(dependsOnMethods = "updateGistTest", description = "Delete a gist")
     public void removeGistTest() {
-        Response response = getGivenAuth().delete("/gists/" + gistId).andReturn();
+        Response response = getGivenAuth().delete("/" + gistId).andReturn();
         Assert.assertEquals(response.statusCode(), 204);
     }
 

@@ -13,12 +13,12 @@ public class RestAssuredUsersTest {
 
     @BeforeTest
     public void initTest() {
-        RestAssured.baseURI = "http://jsonplaceholder.typicode.com";
+        RestAssured.baseURI = "http://jsonplaceholder.typicode.com/users";
     }
 
     @Test
     public void checkStatusCodeTest() {
-        Response response = given().get("/users").andReturn();
+        Response response = given().get().andReturn();
         int actualStatusCode = response.statusCode();
 
         Assert.assertEquals(actualStatusCode, 200);
@@ -26,7 +26,7 @@ public class RestAssuredUsersTest {
 
     @Test
     public void checkResponseHeaderTest() {
-        Response response = given().get("/users").andReturn();
+        Response response = given().get().andReturn();
         String actualContentType = response.header("Content-Type");
 
         Assert.assertEquals(actualContentType, "application/json; charset=utf-8");
@@ -34,7 +34,7 @@ public class RestAssuredUsersTest {
 
     @Test
     public void checkResponseBodyTest() {
-        Response response = given().get("/users").andReturn();
+        Response response = given().get().andReturn();
         User[] users = response.as(User[].class);
 
         Assert.assertEquals(users.length, 10);

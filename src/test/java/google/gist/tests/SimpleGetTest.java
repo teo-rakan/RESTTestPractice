@@ -11,20 +11,20 @@ public class SimpleGetTest extends BaseTest {
 
     @Test(description = "Checks status code for getting a user's gists")
     public void checkGetGistsStatusCodeTest() {
-        Response response = getGivenAuth().get("/gists").andReturn();
+        Response response = getGivenAuth().get().andReturn();
         Assert.assertEquals(response.statusCode(), 200);
     }
 
     @Test(description = "List a user's gists")
     public void listUsersGistsTest() {
-        Response response = getGivenAuth().get("/gists").andReturn();
+        Response response = getGivenAuth().get().andReturn();
         Gist[] gists = response.as(Gist[].class);
         Assert.assertTrue(gists.length > 0);
     }
 
     @Test(description = "List all public gists")
     public void listAllPublicGistsTest() {
-        Response response = getGivenAuth().get("/gists/public").andReturn();
+        Response response = getGivenAuth().get("/public").andReturn();
         Gist[] gists = response.as(Gist[].class);
         Assert.assertTrue(gists.length > 0);
     }
@@ -32,13 +32,13 @@ public class SimpleGetTest extends BaseTest {
     @Test(description = "Get a specific revision of a gist")
     public void getSpecificGistRevisionTest() {
         String revisionSha = "5a69ffef97451a6c54da9de0a4676a2ba08d0d43";
-        Response response = getGivenAuth().get("/gists/" + gistId + "/" + revisionSha).andReturn();
+        Response response = getGivenAuth().get("/" + gistId + "/" + revisionSha).andReturn();
         Assert.assertEquals(response.statusCode(), 200);
     }
 
     @Test(description = "List gist commits")
     public void listGistCommits() {
-        Response response = getGivenAuth().get("/gists/" + gistId + "/commits").andReturn();
+        Response response = getGivenAuth().get("/" + gistId + "/commits").andReturn();
         Assert.assertEquals(response.statusCode(), 200);
     }
 }

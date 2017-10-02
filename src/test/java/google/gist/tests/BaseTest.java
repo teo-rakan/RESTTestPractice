@@ -14,7 +14,7 @@ public class BaseTest {
 
     @BeforeTest
     public void initTest() {
-        RestAssured.baseURI = "https://api.github.com";
+        RestAssured.baseURI = "https://api.github.com/gists";
     }
 
     RequestSpecification getGivenAuth() {
