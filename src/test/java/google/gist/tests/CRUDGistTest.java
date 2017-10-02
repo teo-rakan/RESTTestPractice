@@ -48,6 +48,20 @@ public class CRUDGistTest extends BaseTest {
         Assert.assertEquals(actualDescription, newDescription);
     }
 
+    @Test(dependsOnMethods = "createGistTest")
+    public void starGistTest() {
+        Response response  = given().auth().oauth2(token).put("/gists/" + newGistId + "/star").andReturn();
+
+        Assert.assertEquals(response.statusCode(), 204);
+    }
+
+    @Test(dependsOnMethods = "starGistTest")
+    public void unstarGistTest() {
+        Response response  = given().auth().oauth2(token).delete("/gists/" + newGistId + "/star").andReturn();
+
+        Assert.assertEquals(response.statusCode(), 204);
+    }
+
     @Test(dependsOnMethods = "updateGistTest")
     public void removeGistTest() {
         Response response = given().auth().oauth2(token).delete("/gists/" + newGistId).andReturn();
