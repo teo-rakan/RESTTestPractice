@@ -1,6 +1,5 @@
 package google.gist.tests;
 
-import com.google.gson.Gson;
 import com.jayway.restassured.response.Response;
 import google.gist.model.Gist;
 import google.gist.model.GistFile;
@@ -24,8 +23,7 @@ public class CRUDGistTest extends BaseTest {
     @Test
     public void createGistTest() {
         Gist gist = getDefaultGist();
-        String json = new Gson().toJson(gist, Gist.class);
-        Response response  = given().auth().oauth2(token).body(json).with().contentType("application/json").post("/gists").andReturn();
+        Response response  = given().auth().oauth2(token).body(gist).with().contentType("application/json").post("/gists").andReturn();
 
         Assert.assertEquals(response.statusCode(), 201);
 
@@ -38,12 +36,11 @@ public class CRUDGistTest extends BaseTest {
         Gist gist = getDefaultGist();
         String oldDescription = gist.getDescription();
         String newDescription = "Updated description";
-        String actualDescription, json;
+        String actualDescription;
         Response response;
 
         gist.setDescription(newDescription);
-        json = new Gson().toJson(gist, Gist.class);
-        response = given().auth().oauth2(token).body(json).with().contentType("application/json").patch("/gists/" + newGistId).andReturn();
+        response = given().auth().oauth2(token).body(gist).with().contentType("application/json").patch("/gists/" + newGistId).andReturn();
         actualDescription = response.as(Gist.class).getDescription();
 
         Assert.assertEquals(response.statusCode(), 200);
