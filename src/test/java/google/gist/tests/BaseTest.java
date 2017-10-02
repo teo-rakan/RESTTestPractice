@@ -2,8 +2,11 @@ package google.gist.tests;
 
 
 import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.specification.RequestSpecification;
 import google.gist.utils.PropertyManager;
 import org.testng.annotations.BeforeTest;
+
+import static com.jayway.restassured.RestAssured.given;
 
 public class BaseTest {
 
@@ -12,5 +15,9 @@ public class BaseTest {
     @BeforeTest
     public void initTest() {
         RestAssured.baseURI = "https://api.github.com";
+    }
+
+    protected RequestSpecification getGivenAuth() {
+        return given().auth().oauth2(token);
     }
 }
