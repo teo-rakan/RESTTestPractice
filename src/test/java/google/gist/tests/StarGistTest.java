@@ -1,8 +1,11 @@
 package google.gist.tests;
 
 import com.jayway.restassured.response.Response;
+import google.gist.model.Gist;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.Date;
 
 public class StarGistTest extends BaseTest {
 
@@ -21,7 +24,15 @@ public class StarGistTest extends BaseTest {
         Assert.assertEquals(response.statusCode(), 204);
     }
 
-    @Test(dependsOnMethods = "checkGistStaredTest", description = "Unstar a gist")
+    @Test(dependsOnMethods = "checkGistStaredTest", description = "List starred gists")
+    public void listStarredGistsTest() {
+        Response response  = getGivenAuth().param("since", "2017-06-20T11:34:15Z").get("/gists/starred").andReturn();
+        Gist[] gists = response.as(Gist[].class);
+        Assert.assertEquals(response.statusCode(), 200);
+        Assert.assertTrue(gists.length > 0);
+    }
+
+    @Test(dependsOnMethods = "listStarredGistsTest", description = "Unstar a gist")
     public void unstarGistTest() {
         Response response  = getGivenAuth().delete(url).andReturn();
         Assert.assertEquals(response.statusCode(), 204);

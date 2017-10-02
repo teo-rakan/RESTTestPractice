@@ -13,6 +13,7 @@
         <classes>
             <class name="google.gist.tests.SimpleGetTest"/>
             <class name="google.gist.tests.StarGistTest"/>
+            <class name="google.gist.tests.ForkGistTest"/>
             <class name="google.gist.tests.CRUDGistTest"/>
         </classes>
     </test>
