@@ -5,7 +5,12 @@ import google.gist.model.Gist;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Date;
+
+import static google.gist.utils.DateUtil.getToday;
 
 public class StarGistTest extends BaseTest {
 
@@ -26,7 +31,7 @@ public class StarGistTest extends BaseTest {
 
     @Test(dependsOnMethods = "checkGistStaredTest", description = "List starred gists")
     public void listStarredGistsTest() {
-        Response response  = getGivenAuth().param("since", "2017-06-20T11:34:15Z").get("/gists/starred").andReturn();
+        Response response  = getGivenAuth().param("since", getToday()).get("/gists/starred").andReturn();
         Gist[] gists = response.as(Gist[].class);
         Assert.assertEquals(response.statusCode(), 200);
         Assert.assertTrue(gists.length > 0);
