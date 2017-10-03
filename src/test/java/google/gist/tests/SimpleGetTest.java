@@ -5,6 +5,8 @@ import google.gist.model.Gist;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+
 public class SimpleGetTest extends BaseTest {
 
     private final String gistId = "989aaca6beb2d3796f07ea4040598c04";
@@ -19,6 +21,7 @@ public class SimpleGetTest extends BaseTest {
     public void listUsersGistsTest() {
         Response response = getGivenAuth().get().andReturn();
         Gist[] gists = response.as(Gist[].class);
+        Assert.assertEquals(response.statusCode(), 200);
         Assert.assertTrue(gists.length > 0);
     }
 
@@ -26,7 +29,8 @@ public class SimpleGetTest extends BaseTest {
     public void listAllPublicGistsTest() {
         Response response = getGivenAuth().get("/public").andReturn();
         Gist[] gists = response.as(Gist[].class);
-        Assert.assertTrue(gists.length > 0);
+        Assert.assertEquals(response.statusCode(), 200);
+        Assert.assertTrue(Arrays.stream(gists).allMatch(Gist::isPublic));
     }
 
     @Test(description = "Get a specific revision of a gist")

@@ -25,6 +25,7 @@ public class CRUDGistTest extends BaseTest {
     public void checkGistTest() {
         Response response = getGivenAuth().get("/" + gistId).andReturn();
         Gist gist = response.as(Gist.class);
+        Assert.assertEquals(response.statusCode(), 200);
         Assert.assertTrue(gist.getFiles().containsKey(fileName));
     }
 
