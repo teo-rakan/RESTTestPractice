@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1" verbose="1" name="Gmail Suite" annotations="JDK" parallel="tests">
+<suite thread-count="3" verbose="1" name="REST Suite" annotations="JDK" parallel="tests">
     <test name="jsonplaceholder.typicode.com">
         <classes>
             <class name="jsonplaceholder.typicode.com.tests.ApacheHttpClientUsersTest"/>
