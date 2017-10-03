@@ -12,7 +12,7 @@ import static com.jayway.restassured.RestAssured.given;
 public class RestAssuredUsersTest {
 
     private final String baseUrl = "http://jsonplaceholder.typicode.com/users";
-    RequestSpecification requestSpecification = new RequestSpecBuilder().setBaseUri(baseUrl).build();
+    private final RequestSpecification requestSpecification = new RequestSpecBuilder().setBaseUri(baseUrl).build();
 
     @Test
     public void checkStatusCodeTest() {
